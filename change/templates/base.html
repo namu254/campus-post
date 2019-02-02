@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/foundation-icons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  </head>
+
+  <style type="text/css">
+  @font-face{
+  font-family: 'AbrilFatface';
+  font-style: normal;
+  src: url(' {% static "fonts/AbrilFatface-Regular.ttf" %}') format('truetype');
+}
+@font-face{
+   font-family: 'Mukta';
+   font-style: normal;
+   src: url('{% static "fonts/Mukta-Regular.ttf" %}') format('truetype');
+}
+body {
+   color: black;
+   background-color: white;
+   font-family: 'Mukta', sans-serif;
+}
+@font-face {
+  font-family: "foundation-icons";
+  src: url("{% static 'fonts/foundation-icons.eot' %}");
+  src: url("{% static 'fonts/foundation-icons.eot?#iefix' %}") format("embedded-opentype"),
+       url("{% static 'fonts/foundation-icons.woff' %}") format("woff"),
+       url("{% static 'fonts/foundation-icons.ttf' %}") format("truetype"),
+       url("{% static 'fonts/foundation-icons.svg#fontcustom' %}") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+  </style>
+<body>
+{% include "top-bar.html" %}
+
+{% block content %}
+{% endblock %}
+
+{% include "profile_modal.html" %}
+{% include "delete_account_modal.html" %}
+{% include "footer.html" %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery.cookie.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/foundation.min.js' %}"></script>
+<script>
+  $(document).foundation();
+</script>
+{% block javascript %}
+{% endblock %}
+
+<script>
+  $(document).ready(function(){
+    {% block domready %}
+    {% endblock %}
+    });
+</script>
+
+</body>
+</html>

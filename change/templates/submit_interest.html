@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load l10n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <!-- Main content -->
+  <div class="grid-container">
+    <header style="font-weight: bold; letter-spacing: 0.5px">Provide The Interest Details <small class="selected" style="font-weight: normal;"></small></header>
+
+      <hr style="margin-top: 0px"> 
+    <div class="grid-x grid-padding-x">
+    <!-- Left side -->
+      <div class="large-8 medium-8 cell">
+      <form method="post" action="{% url 'submit_interest' %}" class="submit_interest">  
+      {% csrf_token %}
+
+      {{ form|crispy }}
+      <input type="submit" class="button primary small" value="submit" id="post_submit_btn">
+      </form>
+      </div>
+      <!-- Left Side  -->
+      
+      <!-- Side bar -->
+      {% include "side_bar.html" %}
+      <!-- Side bar -->
+    </div>
+  </div>
+<!-- Main content -->
+
+{% endblock %}

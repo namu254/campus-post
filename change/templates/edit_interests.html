@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="grid-container">
+      <header style="font-weight: bold; letter-spacing: 0.5px">Choose Your Interests</header>
+
+      <hr style="margin-top: 0px">  
+    <div class="grid-x grid-margin-x small-up-2 medium-up-3 large-up-5">
+    {% for interest in all_interests %}
+      <div class="cell">
+        <div class="interest_container" id="{{interest.interest_name}}">
+			<!-- <img src="trolltunga.jpg" alt="Norway" width="1000" height="300"> -->
+			<div class="center_text">{{ interest.interest_name }}</div>
+		</div>
+    </div>
+    {% endfor %}
+
+    </div>
+    <!-- <p class="response"></p> -->
+    <button class="button primary small save_changes">Save Changes</button>
+    
+</div>
+
+{% endblock %}
+

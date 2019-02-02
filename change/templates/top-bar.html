@@ -1,0 +1,13 @@
+    <!-- Top Bar -->
+  <div data-sticky-container style="margin-bottom: 15px;">
+  <div class="small-12 sticky" data-sticky data-options="stickyOn:small;marginTop:0">
+  	<div class="title-bar"  style="width:100%" id="responsive-topbar">
+    <h3 class="float-center name">Campus <span class="highlight">Post</span></h3>
+    {% if user.is_authenticated %}
+    <i class="fi-torso float-right profile_icon" id="account_modal"></i>
+    {% endif %}
+  	</div>
+  	<p class="response"></p>
+  </div>
+  </div>
+  <!-- Top Bar -->

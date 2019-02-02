@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+		<div class="float-center">
+			<form method="post" action="{% url 'add_post' %}">
+				
+			{% csrf_token %}
+			{{ form|crispy }}
+			<input type="submit" class="button secondary small float-center" value="Add Post">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

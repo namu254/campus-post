@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <script type="text/javascript">
+    	window.location = "{% url 'index' %}";
+    </script>
+{% else %}
+     <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+		<div class="float-center">
+			{% load crispy_forms_tags %}
+			<form method="post" action="{% url 'sign_up' %}" class="sign_up">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<!-- {{ profile_form|crispy }} -->
+			<input type="submit" class="button primary small float-center" value="Sign Up" style="width: 100%">
+			<p><a href="{% url 'login' %}">Login?</a></p>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}

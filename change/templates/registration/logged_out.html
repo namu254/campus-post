@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <script type="text/javascript">
+    	window.location = "{% url 'index' %}";
+    </script>
+{% else %}
+
+ <script type="text/javascript">
+    	window.location = "{% url 'login' %}";
+  </script>
+
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+		<div class="float-center">
+		<p>You have logged out</p>
+		<p><a href="{% url 'login' %}">Login?</a></p>
+	</div>
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}

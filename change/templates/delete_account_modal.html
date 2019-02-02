@@ -1,0 +1,34 @@
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+    <!-- Left side -->
+      <div class="large-12 medium-12 cell">
+
+      <!-- The Modal -->
+      <div id="delete_acc_modal" class="del_acc_modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="del_acc_close">×</span>
+          <div>
+          <svg id="circle" width="100" height="100" class="float-center">
+              <circle cx="50" cy="50" r="40" />
+            </svg>
+            <p style="text-align: center;margin-bottom: 0px;font-weight: bold;letter-spacing: 0.5px;">{{user.first_name }} {{user.last_name }}</p>
+            <p style="text-align: center;color: #767676;">@{{user.username}}</p>      
+            <header id="delete_header">Deleting your account will:</header>
+            <ul>
+              <li>Delete your account from CampusPost</li>
+              <li>Delete your Posts</li>
+              <li>Delete your saved Interests</li>
+            </ul>
+          <div class="float-center" >
+            <a class="button primary small float-center" href="{% url 'remove_account' %}" style="background-color: red">
+            DELETE MY ACCOUNT
+            </a>
+          </div>          
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

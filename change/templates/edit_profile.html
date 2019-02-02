@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="grid-container">
+<div class="float-center" style="margin: 20px">
+
+<header style="font-weight: bold;letter-spacing: 0.5px">Edit Profile <small style="font-weight: normal;"><a>{{user.username}}</a></small></header>
+  <hr style="margin: 0px">	
+</div>
+    <div class="grid-x grid-padding-x">
+		<div class="float-center" style="margin-bottom: 30px;">
+
+			{% load crispy_forms_tags %}
+			<form method="POST" action="{% url 'edit_profile' %}">
+			{% csrf_token %}
+			{{ user_form|crispy }}
+			{{ profile_form|crispy }}
+			<input type="submit" class="button primary small float-center" value="Save changes">
+			</form>
+			<p><a href="{% url 'change_password' %}">Change Password?</a></p>
+			<p class="delete_account">Delete Account?</p>  
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+

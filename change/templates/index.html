@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load l10n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <!-- Main content -->
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+    <!-- Left side -->
+      <div class="large-8 medium-8 cell">
+
+      <div class="recent_interest">
+      <header style="font-weight: bold;margin-bottom: 5px;letter-spacing: 0.5px">Recent Interests</header>
+      <ul class="menu">
+      {% for recent in recent_interest %}
+        <p class="recent_interest_tag" id="{{ recent.interest_name }}">{{ recent.interest_name }}</p>
+        {% endfor %}
+
+      </ul>
+      <a href="{% url 'edit_interests' %}">...more</a>
+      <p class="submit_interest">
+        <a href="{% url 'submit_interest' %}">Submit Your Own Interest?</a>
+      </p>
+      </div>
+      
+      
+      <hr>
+      <header style="font-weight: bold;font-size: medium;margin-bottom: 0px;letter-spacing: 0.5px">From Your Interests</header>
+      <!-- <hr style="margin-top: 10px;margin-bottom: 5px"> -->
+        {% for key,post in post_list.items %}
+        <div class="post">
+        <div class="grid-x grid-padding-x" id="{{ post.post_id }}">
+          <div class="large-12 cell top-section">
+            <p class="float-left names">
+            <span class="full_name">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+            <span class="username">@{{ post.author }}</span>
+            </p>
+            <p class="float-right interest_tag" id="{{ post.interest }}">{{post.interest}}</p> 
+          </div>
+        </div>
+        <div class="large-12 cell middle-section">
+            <p>{{ post.post_text|urlizetrunc:50|linebreaksbr }}</p>
+            <p class="timesince">{{ post.date_posted|naturaltime|unlocalize }}</p>
+        </div>
+        <div class="grid-x grid-padding-x">
+          <div class="large-12 cell bottom-section">
+            <ul class="menu align-left">
+              <li class="like" id="{{ post.post_id }}">
+              <i class="fi-heart icons" id="like_icon/{{ post.post_id }}"></i>
+              <span id="likes/{{ post.post_id }}" class="like_count">0</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+         
+        {% endfor %}
+
+        <div class="pagination" style="margin-bottom: 50px;">
+          <span class="step-links">
+              {% if posts.has_previous %}
+                  <a href="?page=1" class="first_page">F</a>
+                  <a href="?page={{ posts.previous_page_number }}" class="previous_page"><<</a>
+              {% endif %}
+
+              <span class="current">
+                   {{ posts.number }} / {{ posts.paginator.num_pages }}
+              </span>
+
+              {% if posts.has_next %}
+                  <a href="?page={{ posts.next_page_number }}" class="next_page">>></a>
+                  <a href="?page={{ posts.paginator.num_pages }}" class="last_page">L</a>
+              {% endif %}
+          </span>
+        </div>
+
+      
+      </div>
+      <!-- Left Side  -->
+      
+      
+      <!-- Side bar -->
+      {% include "side_bar.html" %}
+      <!-- Side bar -->
+    </div>
+  </div>
+<!-- Main content -->
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load l10n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <!-- Main content -->
+  <div class="grid-container">
+
+    <div class="grid-x grid-padding-x">
+    <!-- Left side -->
+      <div class="large-8 medium-8 cell">
+      <header style="font-weight: bold; letter-spacing: 0.5px">Your Posts <small class="selected" style="font-weight: normal;"></small></header>
+
+      <hr style="margin-top: 0px">  
+
+      {% if posts %}
+        {% for post in posts %}
+        <div class="post">
+        <div class="grid-x grid-padding-x" id="{{ post.post_id }}">
+          <div class="large-12 cell top-section">
+            <p class="float-left names">
+            <span class="full_name">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+            <span class="username">@{{ post.author }}</span>
+            </p>
+            <p class="float-right interest_tag" id="{{ post.interest }}">{{post.interest}}</p> 
+          </div>
+        </div>
+        <div class="large-12 cell middle-section">
+            <p>{{ post.post_text|urlizetrunc:50|linebreaksbr }}</p>
+            <p class="timesince">{{ post.date_posted|naturaltime|unlocalize }}</p>
+        </div>
+        <div class="grid-x grid-padding-x">
+          <div class="large-12 cell bottom-section">
+            <ul class="menu align-left">
+              <li class="like" id="{{ post.post_id }}">
+              <i class="fi-heart icons" id="like_icon/{{ post.post_id }}"></i>
+              <span id="likes/{{ post.post_id }}" class="like_count">0</span>
+              </li>
+              <li class="delete_post" id="{{ post.post_id }}">Delete</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+
+        <div class="pagination" style="margin-bottom: 50px;">
+          <span class="step-links">
+              {% if posts.has_previous %}
+                  <a href="?page=1" class="first_page">F</a>
+                  <a href="?page={{ posts.previous_page_number }}" class="previous_page"><<</a>
+              {% endif %}
+
+              <span class="current">
+                   {{ posts.number }} / {{ posts.paginator.num_pages }}
+              </span>
+
+              {% if posts.has_next %}
+                  <a href="?page={{ posts.next_page_number }}" class="next_page">>></a>
+                  <a href="?page={{ posts.paginator.num_pages }}" class="last_page">L</a>
+              {% endif %}
+          </span>
+        </div>
+        
+      {% else %}
+      <div style="text-align: center;margin:30px">
+        <p class="no_post"><i class="fi-info"></i>  You have no posts yet</p>
+      </div>
+      {% endif %}
+      </div>
+      <!-- Left Side  -->
+      
+      <!-- Side bar -->
+      {% include "side_bar.html" %}
+      <!-- Side bar -->
+    </div>
+  </div>
+<!-- Main content -->
+
+{% endblock %}
